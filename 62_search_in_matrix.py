@@ -20,46 +20,38 @@
 # else:
 #     print("Not found")
 # Using binary search in matrix
-max = 100
-def binarySearch(mat, i, j_low, j_high, x):
-    while j_low <= j_high:
-        j_mid = (j_low + j_high) // 2
-        if mat[i][j_mid] == x:
-            print("Found at", i, j_mid)
-            return
-        elif mat[i][j_mid] > x:
-            j_high = j_mid - 1
-        else:
-            j_low = j_mid + 1
-    print("Element not found")
-def sortedMatrixSearch(mat, n, m, x):
-    if n == 1:
-        binarySearch(mat, 0, 0, m-1, x)
-        return
-    i_low = 0
-    i_high = n -1
-    j_mid = m // 2
-    while i_low + 1 < i_high:
-        i_mid = (i_low + i_high) // 2
-        if mat[i_mid][j_mid] == x:
-            print("Found at", i_mid, j_mid)
-            return
-        elif mat[i_mid][j_mid] > x:
-            i_high = i_mid
-        else:
-            i_low = i_mid
-    if mat[i_low][j_mid] == x:
-        print("Found at", i_low, j_mid)
-    elif mat[i_low + 1][j_mid] == x:
-        print("Found at", i_low+1, j_mid)
-    elif x <= mat[i_low][j_mid-1]:
-        binarySearch(mat, i_low, 0, j_mid - 1, x)
-    elif x >= mat[i_low][j_mid + 1] and x <= mat[i_low][m-1]:
-        binarySearch(mat, i_low, j_mid+1, m-1, x)
-    elif x <= mat[i_low + 1][j_mid - 1]:
-        binarySearch(mat, i_low + 1, 0, j_mid - 1, x)
-    else:
-        binarySearch(mat, i_low + 1, j_mid + 1, m - 1, x)
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        def binarySearch(arr, low, high, target):
+            while low <= high:
+                mid = (low + high) // 2
+                if arr[mid] == target:
+                    return True
+                elif arr[mid] < target:
+                    low = mid + 1
+                else:
+                    high = mid - 1
+            return False
+        
+        rows = len(matrix)
+        if rows == 0:
+            return False
+        cols = len(matrix[0])
+        if cols == 0:
+            return False
+        
+        row = 0
+        col = cols - 1
+        
+        while row < rows and col >= 0:
+            if matrix[row][col] == target:
+                return True
+            elif matrix[row][col] < target:
+                row += 1
+            else:
+                col -= 1
+        
+        return False
 if __name__ == "__main__":
     n = 4
     m = 5
@@ -68,4 +60,4 @@ if __name__ == "__main__":
            [20, 22, 28, 29, 31],
            [36, 38, 50, 61, 63],
            [64, 66, 100, 122, 128]]
-    sortedMatrixSearch(mat, n, m, x)
+    searchMatrix(mat, n, m, x)
