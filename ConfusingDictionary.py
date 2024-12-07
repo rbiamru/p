@@ -20,3 +20,15 @@ def getFrequencies(v: List[int]) -> List[int]:
     key_min_value = min([key for key, freq in mp.items() if freq == min_frequentValue]) #Frequency === value (frequency means value)
 
     return [key_max_value, key_min_value]
+
+Visual Analogy
+Think of the dictionary as a table of fruits and their prices:
+
+Fruit	Price
+Apple	10
+Banana	20
+Cherry	15
+When we say max(mp, key=mp.get), it’s like asking:
+
+"Which fruit has the highest price?"
+The function goes through each fruit, checks its price, and tells us 'banana'.
