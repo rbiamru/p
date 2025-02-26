@@ -32,3 +32,28 @@ When we say max(mp, key=mp.get), it’s like asking:
 
 "Which fruit has the highest price?"
 The function goes through each fruit, checks its price, and tells us 'banana'.
+
+# Confusing Sorted 
+###def lexico_compare(str1, str2):
+    min_length = min(len(str1), len(str2))
+    for i in range(min_length):
+        if str1[i] < str2[i]:
+            return -1
+        elif str1[i] > str2[i]:
+            return 1
+    if len(str1) < len(str2):
+        return -1
+    elif len(str1) > len(str2):
+        return 1
+    return 0
+
+def lexico_sort(strings):
+    return sorted(strings, key=functools.cmp_to_key(###lexico_compare))
+
+# Example usage
+import functools
+
+strings = ["amruthan", "amruthana", "amurusha", "amrut", "amruta"]
+sorted_strings = lexico_sort(strings)
+print("Lexicographically sorted:", sorted_strings)
+
