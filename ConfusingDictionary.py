@@ -34,6 +34,7 @@ When we say max(mp, key=mp.get), it’s like asking:
 The function goes through each fruit, checks its price, and tells us 'banana'.
 
 # Confusing Sorted 
+https://docs.python.org/3/howto/sorting.html#sortinghowto
 ###def lexico_compare(str1, str2):
     min_length = min(len(str1), len(str2))
     for i in range(min_length):
